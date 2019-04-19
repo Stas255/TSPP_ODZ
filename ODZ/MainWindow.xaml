@@ -1,11 +1,11 @@
-﻿<Window x:Class="ODZ.MainWindow"
+﻿<Window x:Name="inforBookForm" x:Class="ODZ.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ODZ"
         mc:Ignorable="d"
-        Title="MainWindow" ResizeMode="NoResize" Height="450" Width="800">
+        Title="MainWindow" ResizeMode="NoResize" Height="450" Width="800" Loaded="inforBookForm_Loaded">
     <Grid Margin="10,10,4,-3">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -19,15 +19,15 @@
                 <MenuItem Name ="SaveDataMenuItem" Header="Зберегти" />
             </MenuItem>
             <MenuItem Header="Рейси">
-                <MenuItem Name ="EditDataMenuItem" Header="Редагувати"/>
-                <MenuItem Name ="AddDataMenuItem" Header="Додати" />
+                <MenuItem Name ="EditDataMenuItem" Header="Редагувати" Click="EditDataMenuItem_Click"/>
+                <MenuItem Name ="AddDataMenuItem" Header="Додати" Click="AddDataMenuItem_Click" />
             </MenuItem>
             <MenuItem Header="Пошук">
                 <MenuItem Name ="SelectXYMenuItem" Header="За автором и назвою" />
                 <MenuItem Name ="SelectXXMenuItem" Header="За роком" />
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="BooksListDG" MaxHeight="244" AutoGenerateColumns="False" Margin="0,26,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" MouseUp="BooksListDG_MouseUp">
+        <DataGrid x:Name="BooksListDG" MaxHeight="254" AutoGenerateColumns="False" Margin="0,26,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" MouseUp="BooksListDG_MouseUp" Height="254">
 
             <DataGrid.Columns >
 
@@ -43,8 +43,8 @@
             </DataGrid.Columns >
 
         </DataGrid>
-        <GroupBox Header="Дані про книгу" HorizontalAlignment="Left" Height="142" Margin="0,270,0,0" VerticalAlignment="Top" Width="343">
-            <Grid Margin="0,-10,-2,-12">
+        <GroupBox Name="GroupBoxEdit" Header="Дані про книгу" Margin="0,285,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid Margin="0,-10,-2,-12" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
@@ -58,7 +58,7 @@
                 <TextBox Name="TextBoxDate" HorizontalAlignment="Left" Height="23" Margin="125,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77"/>
                 <Label Content="Місце розміщення" HorizontalAlignment="Left" Margin="209,10,0,0" VerticalAlignment="Top"/>
                 <TextBox Name="TextBoxPlacing" HorizontalAlignment="Left" Height="23" Margin="209,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
-                <Button Content="Зберегти" HorizontalAlignment="Left" Margin="247,98,0,0" VerticalAlignment="Top" Width="75"/>
+                <Button Name="Button1" Content="Зберегти" HorizontalAlignment="Left" Margin="247,98,0,0" VerticalAlignment="Top" Width="75" Click="Button1_Click"/>
             </Grid>
         </GroupBox>
     </Grid>
