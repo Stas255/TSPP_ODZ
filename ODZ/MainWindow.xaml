@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ODZ"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" ResizeMode="NoResize" Height="450" Width="800">
     <Grid Margin="10,10,4,-3">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <Menu HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="142">
             <MenuItem Header="Файл">
-                <MenuItem Name ="LoadDataMenuItem" Header="Завантажити"></MenuItem>
+                <MenuItem Name ="LoadDataMenuItem" Header="Завантажити" Click="LoadDataMenuItem_Click"></MenuItem>
                 <MenuItem Name ="SaveDataMenuItem" Header="Зберегти" />
             </MenuItem>
             <MenuItem Header="Рейси">
@@ -23,17 +23,17 @@
                 <MenuItem Name ="AddDataMenuItem" Header="Додати" />
             </MenuItem>
             <MenuItem Header="Пошук">
-                <MenuItem Name ="SelectXMenuItem" Header="За автором и назвою" />
-                <MenuItem Name ="SelectXYMenuItem" Header="За роком" />
+                <MenuItem Name ="SelectXYMenuItem" Header="За автором и назвою" />
+                <MenuItem Name ="SelectXXMenuItem" Header="За роком" />
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="BooksListDG" MaxHeight="260" AutoGenerateColumns="False" Margin="0,26,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <DataGrid x:Name="BooksListDG" MaxHeight="244" AutoGenerateColumns="False" Margin="0,26,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" MouseUp="BooksListDG_MouseUp">
 
             <DataGrid.Columns >
 
                 <DataGridTextColumn Header = "Шифр" Binding = "{Binding IDBook}" Width="Auto"/>
 
-                <DataGridTextColumn Header = "Прізвище автора" Binding = "{Binding NameAvtor}" Width="Auto"/>
+                <DataGridTextColumn Header = "Прізвище автора" Binding = "{Binding NameAuthor}" Width="Auto"/>
 
                 <DataGridTextColumn Header = "Назва" Binding = "{Binding Title}" Width="Auto"/>
 
@@ -43,5 +43,23 @@
             </DataGrid.Columns >
 
         </DataGrid>
+        <GroupBox Header="Дані про книгу" HorizontalAlignment="Left" Height="142" Margin="0,270,0,0" VerticalAlignment="Top" Width="343">
+            <Grid Margin="0,-10,-2,-12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Шифр книги" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <TextBox Name="TextBoxIDBook" HorizontalAlignment="Left" Height="23" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78"/>
+                <Label Content="Прізвище" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"/>
+                <TextBox Name="TextBoxNameAuthor" HorizontalAlignment="Left" Height="23" Margin="10,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78"/>
+                <Label Content="Назва" HorizontalAlignment="Left" Margin="141,10,0,0" VerticalAlignment="Top"/>
+                <TextBox Name="TextBoxTitle" HorizontalAlignment="Left" Height="23" Margin="125,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77"/>
+                <Label Content="Рік видання" HorizontalAlignment="Left" Margin="125,64,0,0" VerticalAlignment="Top"/>
+                <TextBox Name="TextBoxDate" HorizontalAlignment="Left" Height="23" Margin="125,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77"/>
+                <Label Content="Місце розміщення" HorizontalAlignment="Left" Margin="209,10,0,0" VerticalAlignment="Top"/>
+                <TextBox Name="TextBoxPlacing" HorizontalAlignment="Left" Height="23" Margin="209,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
+                <Button Content="Зберегти" HorizontalAlignment="Left" Margin="247,98,0,0" VerticalAlignment="Top" Width="75"/>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>
