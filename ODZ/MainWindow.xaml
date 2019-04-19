@@ -6,7 +6,42 @@
         xmlns:local="clr-namespace:ODZ"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Margin="10,10,4,-3">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Menu HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="142">
+            <MenuItem Header="Файл">
+                <MenuItem Name ="LoadDataMenuItem" Header="Завантажити"></MenuItem>
+                <MenuItem Name ="SaveDataMenuItem" Header="Зберегти" />
+            </MenuItem>
+            <MenuItem Header="Рейси">
+                <MenuItem Name ="EditDataMenuItem" Header="Редагувати"/>
+                <MenuItem Name ="AddDataMenuItem" Header="Додати" />
+            </MenuItem>
+            <MenuItem Header="Пошук">
+                <MenuItem Name ="SelectXMenuItem" Header="За автором и назвою" />
+                <MenuItem Name ="SelectXYMenuItem" Header="За роком" />
+            </MenuItem>
+        </Menu>
+        <DataGrid x:Name="BooksListDG" MaxHeight="260" AutoGenerateColumns="False" Margin="0,26,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+            <DataGrid.Columns >
+
+                <DataGridTextColumn Header = "Шифр" Binding = "{Binding IDBook}" Width="Auto"/>
+
+                <DataGridTextColumn Header = "Прізвище автора" Binding = "{Binding NameAvtor}" Width="Auto"/>
+
+                <DataGridTextColumn Header = "Назва" Binding = "{Binding Title}" Width="Auto"/>
+
+                <DataGridTextColumn Header = "Рік видання" Binding = "{Binding Date}" Width="Auto"/>
+
+                <DataGridTextColumn Header = "Розміщення" Binding = "{Binding Placing}" Width="Auto"/>
+            </DataGrid.Columns >
+
+        </DataGrid>
     </Grid>
 </Window>
