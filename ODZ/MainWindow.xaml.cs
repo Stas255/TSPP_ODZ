@@ -15,7 +15,13 @@ namespace ODZ
         public List<BooksClass> fList = new List<BooksClass>();
         public BooksClass[] selectedList = new BooksClass[10];
         int bookNum;
+        private int NumberBook;
         bool bookAdd = false;
+        string filePath;//папка із виконуваним файлом програми
+        Microsoft.Office.Interop.Word.Application wordApp;
+        Microsoft.Office.Interop.Word.Document wordDoc;
+        public BooksClass[] selectedNameList = new BooksClass[10];
+        public BooksClass[] selectedName2List = new BooksClass[10];
         public MainWindow()
         {
             InitializeComponent();
@@ -312,7 +318,7 @@ namespace ODZ
         {
             GroupBoxNameAndAuthor.Visibility = Visibility.Visible;
 
-            this.Width = BooksListDG.Margin.Left + BooksListDG.RenderSize.Width + GroupBoxNameAndAuthor.Width + 30;
+            //this.Width = BooksListDG.Margin.Left + BooksListDG.RenderSize.Width + GroupBoxNameAndAuthor.Width + 30;
             ComboBoxAutor.Items.Clear();
             FillAutorList();
         }
@@ -341,7 +347,7 @@ namespace ODZ
             int timebook = Convert.ToInt16(TextBoxYear.Text);
 
             ListBoxNumber.Items.Clear();
-            int NumberBook = 0;
+            NumberBook = 0;
 
             for (int i = 0; i < fList.Count; i++)
             {
@@ -355,6 +361,97 @@ namespace ODZ
                 {
                     ListBoxNumber.Items.Add(" Кількість книг " + NumberBook);
                 }
+        }
+        private void WriteData(BooksClass[] selXYList, BooksClass[] selXXList)
+        {
+            filePath = Environment.CurrentDirectory.ToString();
+            try
+            {
+                wordApp = new Microsoft.Office.Interop.Word.Application();
+                wordDoc = wordApp.Documents.Add(filePath + "\\Шаблон_Пошуку_рейсів2.dot");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + char.ConvertFromUtf32(13) +
+                                "Недостатньо даних!" + char.ConvertFromUtf32(13) +
+                                "Помістіть файл Шаблон_Пошуку_книгів.dot" + char.ConvertFromUtf32(13) +
+                                "у каталог із exe-файлом програми і повторіть збереження", "Помилка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            string selectedAutor = ComboBoxAutor.SelectedItem.ToString();
+            string selectedTitle = ComboBoxTitle.SelectedItem.ToString();
+            ReplaceText(selXYList, 1);
+            ReplaceText(selectedAutor, "[X]");
+
+            ReplaceText(selXXList, 2);
+            ReplaceText(selectedTitle, "[Y]");
+
+
+            wordDoc.Save();
+            if (wordDoc != null)
+            {
+                wordDoc.Close();
+            }
+            if (wordApp != null)
+            {
+                wordApp.Quit();
+            }
+        }
+        private void ReplaceText(BooksClass[] selectedLixt, int numTable)
+        {
+            for (int i = 0; i < selectedLixt.Length; i++)
+            {
+                if (selectedLixt[i] != null)
+                {
+                    if (numTable == 1)
+                    {
+                        wordDoc.Tables[numTable].Rows.Add();
+                        wordDoc.Tables[numTable].Cell(2 + i, 1).Range.Text =
+                            selectedLixt[i].Title;
+                        wordDoc.Tables[numTable].Cell(2 + i, 2).Range.Text =
+                            selectedLixt[i].NameAuthor;
+                        wordDoc.Tables[numTable].Cell(2 + i, 3).Range.Text =
+                            selectedLixt[i].Placing;
+                    }
+                    else
+                    {
+                        wordDoc.Tables[numTable].Rows.Add();
+                        wordDoc.Tables[numTable].Cell(1 + i, 1).Range.Text =
+                            " Кількість книг " + NumberBook;
+                    }
+                }
+            }
+
+        }
+        private void ReplaceText(string textToReplace, string replacedText)
+        {
+            Object missing = Type.Missing;
+
+            Microsoft.Office.Interop.Word.Range selText;
+            selText = wordDoc.Range(wordDoc.Content.Start, wordDoc.Content.End);
+
+            Microsoft.Office.Interop.Word.Find find = wordApp.Selection.Find;
+            find.Text = replacedText;
+            find.Replacement.Text = textToReplace;
+            Object wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue;
+            Object replace = Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll;
+
+            find.Execute(FindText: Type.Missing,
+                MatchCase: false,
+                MatchWholeWord: false,
+                MatchWildcards: false,
+                MatchSoundsLike: missing,
+                MatchAllWordForms: false,
+                Forward: true,
+                Wrap: wrap,
+                Format: false,
+                ReplaceWith: missing, Replace: replace);
+        }
+
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+            WriteData(selectedNameList, selectedName2List);
         }
     }
 }
