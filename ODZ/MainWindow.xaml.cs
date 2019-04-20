@@ -109,8 +109,8 @@ namespace ODZ
         private void AddDataMenuItem_Click(object sender, RoutedEventArgs e)
         {
             //GroupBoxEdit.Visibility = Visibility.Visible;
-            this.Height = BooksListDG.Margin.Top + BooksListDG.RenderSize.Height + 50 +
-                          GroupBoxEdit.RenderSize.Height + 20;
+            //this.Height = BooksListDG.Margin.Top + BooksListDG.RenderSize.Height + 50 +
+            //              GroupBoxEdit.RenderSize.Height + 20;
             Button1.Content = "Додати";
             
             bookNum = fList.Count;
@@ -150,7 +150,7 @@ namespace ODZ
                         cmd.Parameters.Add("@date", MySqlDbType.Int16, 4).Value =
                             Convert.ToInt16(TextBoxDate.Text);
                         cmd.Parameters.Add("@placing", MySqlDbType.VarChar,7).Value = TextBoxPlacing.Text;
-                        cmd.Parameters.Add("@id", MySqlDbType.Int16, 11).Value = num + 1;
+                        //cmd.Parameters.Add("@id", MySqlDbType.Int16, 11).Value = num + 1;
                         conn.Open();
                         cmd.ExecuteNonQuery();
                     }
