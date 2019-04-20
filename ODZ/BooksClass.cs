@@ -13,9 +13,10 @@ namespace ODZ
         public string Title { get; set; }
         public int Date { get; set; }
         public string Placing { get; set; }
-
-        public BooksClass(string IDBook, string NameAuthor, string Title, int Date, string Placing)
+        public  int id { get; set; }
+        public BooksClass(int id,string IDBook, string NameAuthor, string Title, int Date, string Placing)
         {
+            this.id = id;
             this.IDBook = IDBook;
             this.NameAuthor = NameAuthor;
             this.Title = Title;

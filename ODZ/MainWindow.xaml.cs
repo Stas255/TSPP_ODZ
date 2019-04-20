@@ -38,7 +38,7 @@ namespace ODZ
                 int i = 0;
                 while (reader.Read())
                 {
-                    fList.Add(new BooksClass((string)reader["idbook"], (string)reader["nameauthor"],
+                    fList.Add(new BooksClass((int)reader["id"],(string)reader["idbook"], (string)reader["nameauthor"],
                         (string)reader["title"], (int)reader["date"], (string)reader["placing"]));
                     i += 1;
                 }
@@ -93,9 +93,10 @@ namespace ODZ
         private void EditDataMenuItem_Click(object sender, RoutedEventArgs e)
         {
             GroupBoxEdit.Visibility = Visibility.Visible;
-            this.Height = BooksListDG.Margin.Top + BooksListDG.RenderSize.Height + 50 +
-                          GroupBoxEdit.RenderSize.Height + 200;
+            //this.Height = BooksListDG.Margin.Top + BooksListDG.RenderSize.Height + 50 +
+            //              GroupBoxEdit.RenderSize.Height + 200;
             Button1.Content = "Редагувати";
+            //bookNum = fList.Count;
         }
 
         private void inforBookForm_Loaded(object sender, RoutedEventArgs e)
@@ -121,14 +122,15 @@ namespace ODZ
             TimeSpan depTime;
             if (bookAdd)
             {
-                fList.Add(new BooksClass("", "", "", 0, ""));
+                fList.Add(new BooksClass(fList.Count,"", "", "", 0, ""));
+                num = fList.Count - 1;
             }
 
-            fList[num].Title = TextBoxTitle.Text;
-            fList[num].Date = Convert.ToInt16(TextBoxDate.Text);
-            fList[num].IDBook = TextBoxIDBook.Text;
-            fList[num].NameAuthor = TextBoxNameAuthor.Text;
-            fList[num].Placing = TextBoxPlacing.Text;
+                fList[num].Title = TextBoxTitle.Text;
+                fList[num].Date = Convert.ToInt16(TextBoxDate.Text);
+                fList[num].IDBook = TextBoxIDBook.Text;
+                fList[num].NameAuthor = TextBoxNameAuthor.Text;
+                fList[num].Placing = TextBoxPlacing.Text;
 
 
 
@@ -150,7 +152,7 @@ namespace ODZ
                         cmd.Parameters.Add("@date", MySqlDbType.Int16, 4).Value =
                             Convert.ToInt16(TextBoxDate.Text);
                         cmd.Parameters.Add("@placing", MySqlDbType.VarChar,7).Value = TextBoxPlacing.Text;
-                        //cmd.Parameters.Add("@id", MySqlDbType.Int16, 11).Value = num + 1;
+                        cmd.Parameters.Add("@id", MySqlDbType.Int16, 11).Value = fList[num].id;
                         conn.Open();
                         cmd.ExecuteNonQuery();
                     }
@@ -188,7 +190,7 @@ namespace ODZ
                         cmd.Parameters.Add("@date", MySqlDbType.Int16, 4).Value =
                             Convert.ToInt16(TextBoxDate.Text);
                         cmd.Parameters.Add("@placing", MySqlDbType.VarChar, 7).Value = TextBoxPlacing.Text;
-                        cmd.Parameters.Add("@id", MySqlDbType.Int16, 11).Value = num + 1;
+                        cmd.Parameters.Add("@id", MySqlDbType.Int16, 11).Value = fList[num].id;
                         conn.Open();
                         cmd.ExecuteNonQuery();
                     }
