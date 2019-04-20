@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ODZ"
         mc:Ignorable="d"
-        Title="MainWindow" ResizeMode="NoResize" Height="450" Width="800" Loaded="inforBookForm_Loaded">
+        Title="MainWindow" ResizeMode="NoResize" Loaded="inforBookForm_Loaded" Width="936.9">
     <Grid Margin="10,10,4,-3">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -23,11 +23,11 @@
                 <MenuItem Name ="AddDataMenuItem" Header="Додати" Click="AddDataMenuItem_Click" />
             </MenuItem>
             <MenuItem Header="Пошук">
-                <MenuItem Name ="SelectXYMenuItem" Header="За автором и назвою" />
+                <MenuItem Name ="SelectXYMenuItem" Header="За автором и назвою" Click="SelectXYMenuItem_Click" />
                 <MenuItem Name ="SelectXXMenuItem" Header="За роком" />
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="BooksListDG" MaxHeight="254" AutoGenerateColumns="False" Margin="0,26,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" MouseUp="BooksListDG_MouseUp" Height="254">
+        <DataGrid x:Name="BooksListDG" MaxHeight="254" AutoGenerateColumns="False" Margin="0,26,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" MouseUp="BooksListDG_MouseUp">
 
             <DataGrid.Columns >
 
@@ -43,7 +43,7 @@
             </DataGrid.Columns >
 
         </DataGrid>
-        <GroupBox Name="GroupBoxEdit" Header="Дані про книгу" Margin="0,285,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <GroupBox Name="GroupBoxEdit" Header="Дані про книгу" Margin="0,285,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="131">
             <Grid Margin="0,-10,-2,-12" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -61,5 +61,24 @@
                 <Button Name="Button1" Content="Зберегти" HorizontalAlignment="Left" Margin="247,98,0,0" VerticalAlignment="Top" Width="75" Click="Button1_Click"/>
             </Grid>
         </GroupBox>
+        <GroupBox Name="GroupBoxNameAndAuthor" Header="Пошук за назвою та автором" HorizontalAlignment="Left" Height="261" Margin="375,30,0,0" VerticalAlignment="Top" Width="199">
+            <Grid Margin="0,0,-2,-14">
+                <Label Content=" Автор" HorizontalAlignment="Left" Margin="72,0,0,0" VerticalAlignment="Top"/>
+                <ComboBox Name="ComboBoxAutor" HorizontalAlignment="Left" Margin="36,31,0,0" VerticalAlignment="Top" Width="120" DropDownClosed="ComboBoxAutor_DropDownClosed"/>
+                <Label Content="Назва" HorizontalAlignment="Left" Margin="76,58,0,0" VerticalAlignment="Top"/>
+                <ComboBox Name="ComboBoxTitle" HorizontalAlignment="Left" Margin="36,84,0,0" VerticalAlignment="Top" Width="120" DropDownOpened="ComboBoxTitle_DropDownOpened"/>
+                <ListBox Name="ListBoxPlacing" HorizontalAlignment="Left" Height="107" Margin="10,136,0,0" VerticalAlignment="Top" Width="169"/>
+                <Button Content="Пошук" HorizontalAlignment="Left" Margin="58,111,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Пошук за роком" HorizontalAlignment="Left" Height="261" Margin="588,30,0,0" VerticalAlignment="Top" Width="199">
+            <Grid Margin="0,-12,-12,-12">
+                <Label Content="Рік" HorizontalAlignment="Left" Margin="81,23,0,0" VerticalAlignment="Top"/>
+                <TextBox Name="TextBoxYear" HorizontalAlignment="Left" Height="23" Margin="35,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <ListBox Name="ListBoxNumber" HorizontalAlignment="Left" Height="146" Margin="0,107,0,0" VerticalAlignment="Top" Width="189"/>
+                <Button Content="Пошук" HorizontalAlignment="Left" Margin="60,82,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+            </Grid>
+        </GroupBox>
+
     </Grid>
 </Window>

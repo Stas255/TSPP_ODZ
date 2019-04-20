@@ -13,6 +13,7 @@ namespace ODZ
     {
         private string connStr;
         public List<BooksClass> fList = new List<BooksClass>();
+        public BooksClass[] selectedList = new BooksClass[10];
         int bookNum;
         bool bookAdd = false;
         public MainWindow()
@@ -101,8 +102,8 @@ namespace ODZ
         {
             OpenDbFile();
 
-            this.Width = BooksListDG.Margin.Left + BooksListDG.RenderSize.Width + 50;
-            this.Height = BooksListDG.Margin.Top + BooksListDG.RenderSize.Height + 50;
+            this.Width = BooksListDG.Margin.Left + BooksListDG.RenderSize.Width + 2050;
+            this.Height = BooksListDG.Margin.Top + BooksListDG.RenderSize.Height + 2050;
         }
 
         private void AddDataMenuItem_Click(object sender, RoutedEventArgs e)
@@ -226,6 +227,132 @@ namespace ODZ
                 bookAdd = false;
                 ChangeFlightListData(bookNum);
             }
+        }
+
+        private BooksClass[] Selected(string avthor = "", string title = "")
+        {
+            BooksClass[] selectedList = new BooksClass[10];
+            ListBoxPlacing.Items.Clear();
+            title = Convert.ToString(ComboBoxTitle.Items[ComboBoxTitle.SelectedIndex]);
+            avthor = Convert.ToString(ComboBoxAutor.Items[ComboBoxAutor.SelectedIndex]);
+            int j = 0;
+            for (int i = 0; i < fList.Count; i++) //???
+            {
+                if (avthor == fList[i].NameAuthor && title == fList[i].Title)
+                {
+                    selectedList[j] = fList[i];
+                    j++;
+                }
+            }
+            return selectedList;
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string selectedAutor = "";
+            string selectedTitle = "";
+            selectedAutor = Convert.ToString(ComboBoxAutor.Items[ComboBoxAutor.SelectedIndex]);
+            selectedTitle = Convert.ToString(ComboBoxTitle.Items[ComboBoxTitle.SelectedIndex]);
+            selectedList = Selected(selectedAutor, selectedTitle);//????
+            for (int i = 0; i < selectedList.Length; i++)
+            {
+                if (selectedList[i] != null)
+                {
+                    ListBoxPlacing.Items.Add(selectedList[i].Placing + " ");
+                }
+            }
+        }
+        private void FillAutorList()
+        {
+            bool nameExist = false;
+            ComboBoxAutor.Items.Add(fList[0].NameAuthor);
+
+            for (int i = 1; i < fList.Count; i++) //ошибка
+            {
+                for (int j = 0; j < ComboBoxAutor.Items.Count; j++)
+                {
+                    if (ComboBoxAutor.Items[j].ToString() == fList[i].NameAuthor)
+                    {
+                        nameExist = true;
+                    }
+                }
+
+                if (!nameExist)
+                {
+                    ComboBoxAutor.Items.Add(fList[i].NameAuthor);
+                }
+
+                nameExist = false;
+            }
+        }
+        private void FillTitleist()
+        {
+            bool nameExist = false;
+            ComboBoxTitle.Items.Clear();
+            for (int i = 0; i < fList.Count; i++) //ошибка
+            {
+                for (int j = 0; j < ComboBoxTitle.Items.Count; j++)
+                {
+                    if (ComboBoxTitle.Items[j].ToString() == fList[i].Title)
+                    {
+                        nameExist = true;
+                    }
+                }
+
+                if (!nameExist && fList[i].NameAuthor == ComboBoxAutor.SelectionBoxItem.ToString())
+                {
+                    ComboBoxTitle.Items.Add(fList[i].Title);
+                }
+
+                nameExist = false;
+            }
+        }
+        private void SelectXYMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            GroupBoxNameAndAuthor.Visibility = Visibility.Visible;
+
+            this.Width = BooksListDG.Margin.Left + BooksListDG.RenderSize.Width + GroupBoxNameAndAuthor.Width + 30;
+            ComboBoxAutor.Items.Clear();
+            FillAutorList();
+        }
+
+        private void ComboBoxTitle_DropDownOpened(object sender, EventArgs e)
+        {
+            if (ComboBoxAutor.SelectionBoxItem.ToString() != string.Empty)
+            {
+                FillTitleist();
+            }
+            else
+            {
+                MessageBox.Show("Виберать дані автора" + char.ConvertFromUtf32(13),
+                    "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
+        private void ComboBoxAutor_DropDownClosed(object sender, EventArgs e)
+        {
+            ComboBoxTitle.Items.Clear();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            int timebook = Convert.ToInt16(TextBoxYear.Text);
+
+            ListBoxNumber.Items.Clear();
+            int NumberBook = 0;
+
+            for (int i = 0; i < fList.Count; i++)
+            {
+                if (fList[i].Date == timebook)
+                {
+                    NumberBook++;
+                }
+            }
+
+            if (NumberBook != null)
+                {
+                    ListBoxNumber.Items.Add(" Кількість книг " + NumberBook);
+                }
         }
     }
 }
