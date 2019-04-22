@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using MySql.Data.MySqlClient;
 using System.IO;
+using System.Windows.Controls;
 
 namespace ODZ
 {
@@ -11,21 +12,22 @@ namespace ODZ
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool isCreate = false;
+
+
         private string connStr;
         public List<BooksClass> fList = new List<BooksClass>();
-        public BooksClass[] selectedList = new BooksClass[10];
+        public List<BooksClass> selectedList = new List<BooksClass>();
         int bookNum;
         private int NumberBook;
         bool bookAdd = false;
         string filePath;//папка із виконуваним файлом програми
         Microsoft.Office.Interop.Word.Application wordApp;
         Microsoft.Office.Interop.Word.Document wordDoc;
-        public BooksClass[] selectedNameList = new BooksClass[10];
-        public BooksClass[] selectedName2List = new BooksClass[10];
+        public List<BooksClass> selectedNameList = new List<BooksClass>();
         public MainWindow()
         {
             InitializeComponent();
-            
         }
 
         private void OpenDbFile()
@@ -99,25 +101,26 @@ namespace ODZ
         private void EditDataMenuItem_Click(object sender, RoutedEventArgs e)
         {
             GroupBoxEdit.Visibility = Visibility.Visible;
-            //this.Height = BooksListDG.Margin.Top + BooksListDG.RenderSize.Height + 50 +
-            //              GroupBoxEdit.RenderSize.Height + 200;
+            this.Height = BooksListDG.Margin.Top + BooksListDG.RenderSize.Height + 60 +
+                    GroupBoxEdit.RenderSize.Height;
             Button1.Content = "Редагувати";
-            //bookNum = fList.Count;
         }
 
         private void inforBookForm_Loaded(object sender, RoutedEventArgs e)
         {
             OpenDbFile();
-
-            this.Width = BooksListDG.Margin.Left + BooksListDG.RenderSize.Width + 2050;
-            this.Height = BooksListDG.Margin.Top + BooksListDG.RenderSize.Height + 2050;
+            GroupBoxEdit.Visibility = Visibility.Hidden;
+            GroupBoxNameAndAuthor.Visibility = Visibility.Hidden;
+            GroupBoxYear.Visibility = Visibility.Hidden;
+            this.Width = BooksListDG.Margin.Left + BooksListDG.RenderSize.Width + 60;
+            this.Height = BooksListDG.Margin.Top + BooksListDG.RenderSize.Height + 60;
         }
 
         private void AddDataMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            //GroupBoxEdit.Visibility = Visibility.Visible;
-            //this.Height = BooksListDG.Margin.Top + BooksListDG.RenderSize.Height + 50 +
-            //              GroupBoxEdit.RenderSize.Height + 20;
+            GroupBoxEdit.Visibility = Visibility.Visible;
+            this.Height = BooksListDG.Margin.Top + BooksListDG.RenderSize.Height + 60 +
+                          GroupBoxEdit.RenderSize.Height;
             Button1.Content = "Додати";
             
             bookNum = fList.Count;
@@ -237,9 +240,9 @@ namespace ODZ
             }
         }
 
-        private BooksClass[] Selected(string avthor = "", string title = "")
+        private List<BooksClass> Selected(string avthor = "", string title = "")
         {
-            BooksClass[] selectedList = new BooksClass[10];
+            List<BooksClass> selectedList = new List<BooksClass>();
             ListBoxPlacing.Items.Clear();
             title = Convert.ToString(ComboBoxTitle.Items[ComboBoxTitle.SelectedIndex]);
             avthor = Convert.ToString(ComboBoxAutor.Items[ComboBoxAutor.SelectedIndex]);
@@ -248,7 +251,7 @@ namespace ODZ
             {
                 if (avthor == fList[i].NameAuthor && title == fList[i].Title)
                 {
-                    selectedList[j] = fList[i];
+                    selectedList.Add(fList[i]);
                     j++;
                 }
             }
@@ -261,11 +264,13 @@ namespace ODZ
             selectedAutor = Convert.ToString(ComboBoxAutor.Items[ComboBoxAutor.SelectedIndex]);
             selectedTitle = Convert.ToString(ComboBoxTitle.Items[ComboBoxTitle.SelectedIndex]);
             selectedList = Selected(selectedAutor, selectedTitle);//????
-            for (int i = 0; i < selectedList.Length; i++)
+            selectedNameList.Clear();
+            for (int i = 0; i < selectedList.Count; i++)
             {
                 if (selectedList[i] != null)
                 {
                     ListBoxPlacing.Items.Add(selectedList[i].Placing + " ");
+                    selectedNameList.Add(selectedList[i]);
                 }
             }
         }
@@ -314,13 +319,26 @@ namespace ODZ
                 nameExist = false;
             }
         }
+        private void SelectXXMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (GroupBoxYear.Visibility != Visibility.Visible)
+            {
+                GroupBoxYear.Visibility = Visibility.Visible;
+                AddMargin(GroupBoxYear);
+                this.Width += GroupBoxYear.Width + 20;
+                ComboBoxAutor.Items.Clear();
+            }
+        }
         private void SelectXYMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            GroupBoxNameAndAuthor.Visibility = Visibility.Visible;
-
-            //this.Width = BooksListDG.Margin.Left + BooksListDG.RenderSize.Width + GroupBoxNameAndAuthor.Width + 30;
-            ComboBoxAutor.Items.Clear();
-            FillAutorList();
+            if (GroupBoxNameAndAuthor.Visibility != Visibility.Visible)
+            {
+                GroupBoxNameAndAuthor.Visibility = Visibility.Visible;
+                AddMargin(GroupBoxNameAndAuthor);
+                this.Width += GroupBoxNameAndAuthor.Width + 20;
+                ComboBoxAutor.Items.Clear();
+                FillAutorList();
+            }
         }
 
         private void ComboBoxTitle_DropDownOpened(object sender, EventArgs e)
@@ -344,7 +362,7 @@ namespace ODZ
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            int timebook = Convert.ToInt16(TextBoxYear.Text);
+            int timebook = Convert.ToInt32(TextBoxYear.Text);
 
             ListBoxNumber.Items.Clear();
             NumberBook = 0;
@@ -362,13 +380,13 @@ namespace ODZ
                     ListBoxNumber.Items.Add(" Кількість книг " + NumberBook);
                 }
         }
-        private void WriteData(BooksClass[] selXYList, BooksClass[] selXXList)
+        private void WriteData(List<BooksClass> selXYList)
         {
             filePath = Environment.CurrentDirectory.ToString();
             try
             {
                 wordApp = new Microsoft.Office.Interop.Word.Application();
-                wordDoc = wordApp.Documents.Add(filePath + "\\Шаблон_Пошуку_рейсів2.dot");
+                wordDoc = wordApp.Documents.Add(filePath + "\\Шаблон_Пошуку_Книг.dotx");
             }
             catch (Exception ex)
             {
@@ -379,15 +397,18 @@ namespace ODZ
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            string selectedAutor = ComboBoxAutor.SelectedItem.ToString();
-            string selectedTitle = ComboBoxTitle.SelectedItem.ToString();
+            if (ComboBoxAutor == null)
+            {
+                string selectedAutor = ComboBoxAutor.SelectedItem.ToString();
+                string selectedTitle = ComboBoxTitle.SelectedItem.ToString();
+                ReplaceText(selectedAutor, "[X]");
+                ReplaceText(selectedTitle, "[Y]");
+            }
+            string selectedYear = TextBoxYear.Text;
+            string selectedQuantity = NumberBook.ToString();
             ReplaceText(selXYList, 1);
-            ReplaceText(selectedAutor, "[X]");
-
-            ReplaceText(selXXList, 2);
-            ReplaceText(selectedTitle, "[Y]");
-
-
+            ReplaceText(selectedYear, "[Z]");
+            ReplaceText(selectedQuantity, "[W]");
             wordDoc.Save();
             if (wordDoc != null)
             {
@@ -398,9 +419,9 @@ namespace ODZ
                 wordApp.Quit();
             }
         }
-        private void ReplaceText(BooksClass[] selectedLixt, int numTable)
+        private void ReplaceText(List<BooksClass> selectedLixt, int numTable)
         {
-            for (int i = 0; i < selectedLixt.Length; i++)
+            for (int i = 0; i < selectedLixt.Count; i++)
             {
                 if (selectedLixt[i] != null)
                 {
@@ -451,7 +472,25 @@ namespace ODZ
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            WriteData(selectedNameList, selectedName2List);
+            WriteData(selectedNameList);
+        }
+
+        void AddMargin(GroupBox groupBox)
+        {
+            if (!isCreate)
+            {
+                groupBox.Margin = new Thickness(385, 10, 0, 0);
+                isCreate = true;
+            }
+            else
+            {
+                groupBox.Margin = new Thickness(600, 10, 0, 0);
+            }
+        }
+
+        private void ComboBoxAutor_DropDownOpened(object sender, EventArgs e)
+        {
+            FillAutorList();
         }
     }
 }
