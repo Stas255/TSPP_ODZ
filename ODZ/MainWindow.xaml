@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ODZ"
         mc:Ignorable="d"
-        Title="MainWindow" ResizeMode="NoResize" Loaded="inforBookForm_Loaded" Width="828.9">
+        Title="MainWindow" ResizeMode="NoResize" Loaded="inforBookForm_Loaded" Width="828.9" Icon="246x0w.ico">
     <Grid Margin="10,10,4,-3">
         <Grid.RowDefinitions>
             <RowDefinition/>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Aviadispetcher"
         mc:Ignorable="d"
-        Title="Авторизація" Height="120" Width="247.333">
+        Title="Авторизація" Height="120" Width="247.333" Icon="246x0w.ico">
     <Grid Margin="0,0,-8,0">
         <Label Name="logLabel" Content="Логін" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="41"/>
         <Label Name="passwordLabel" Content="Пароль" HorizontalAlignment="Left" Margin="0,39,0,0" VerticalAlignment="Top"/>

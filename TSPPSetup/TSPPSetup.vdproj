@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_5A06734C20774C03ABEBC6721C7682E0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6F0D05F0B1554F32985B19D77DDF92DB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -40,12 +46,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_40995D94140C217D1A2F156D2A3B38B6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_6F0D05F0B1554F32985B19D77DDF92DB"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -53,6 +53,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_C2623AA6244206F4801D37E351F445C1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_40995D94140C217D1A2F156D2A3B38B6"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -73,6 +79,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -89,6 +111,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -167,6 +197,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5A06734C20774C03ABEBC6721C7682E0"
+            {
+            "SourcePath" = "8:..\\..\\..\\246x0w.ico"
+            "TargetName" = "8:246x0w.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_31789E33203D4E0A9899473A33C9A277"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C2623AA6244206F4801D37E351F445C1"
@@ -255,9 +305,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:TSPPSetup"
+        "ProductName" = "8:TSPPODZ"
         "ProductCode" = "8:{3C358233-46EC-4325-9794-7D5367A8E088}"
-        "PackageCode" = "8:{BE572CE4-A544-4308-B920-F1804DA8B668}"
+        "PackageCode" = "8:{625B9C58-03F3-4C1B-809B-380B553B8730}"
         "UpgradeCode" = "8:{5E767475-8DCC-4422-8092-D96D1EC40CB2}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -274,7 +324,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_5A06734C20774C03ABEBC6721C7682E0"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -388,7 +438,7 @@
             "Target" = "8:_6F0D05F0B1554F32985B19D77DDF92DB"
             "Folder" = "8:_2B92828161484C1085DE9D3253E19EA3"
             "WorkingFolder" = "8:_31789E33203D4E0A9899473A33C9A277"
-            "Icon" = "8:"
+            "Icon" = "8:_5A06734C20774C03ABEBC6721C7682E0"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7B8C6E2FFCC445C098032278D19882FF"
@@ -402,7 +452,7 @@
             "Target" = "8:_6F0D05F0B1554F32985B19D77DDF92DB"
             "Folder" = "8:_B6B6814EF4C64A13A576CBC6AB14F870"
             "WorkingFolder" = "8:_31789E33203D4E0A9899473A33C9A277"
-            "Icon" = "8:"
+            "Icon" = "8:_5A06734C20774C03ABEBC6721C7682E0"
             "Feature" = "8:"
             }
         }
