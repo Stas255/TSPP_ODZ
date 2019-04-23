@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ODZ", "ODZ\ODZ.csproj", "{5BB9947F-50E5-4B32-976C-9C3B68AE0950}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TSPPSetup", "TSPPSetup\TSPPSetup.vdproj", "{0A7E6408-2373-4FE7-8A41-E94C45CC103A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{5BB9947F-50E5-4B32-976C-9C3B68AE0950}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BB9947F-50E5-4B32-976C-9C3B68AE0950}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BB9947F-50E5-4B32-976C-9C3B68AE0950}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A7E6408-2373-4FE7-8A41-E94C45CC103A}.Debug|Any CPU.ActiveCfg = Debug
+		{0A7E6408-2373-4FE7-8A41-E94C45CC103A}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
