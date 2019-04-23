@@ -8,6 +8,7 @@ namespace ODZ
 {
     public class BooksClass
     {
+        public static int logUser { get; set; }
         public string IDBook { get; set; }
         public string NameAuthor { get; set; }
         public string Title { get; set; }

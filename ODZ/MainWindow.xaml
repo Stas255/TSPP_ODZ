@@ -13,10 +13,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Menu HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="142">
+        <Menu Name="Menu" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="145">
             <MenuItem Header="Файл">
                 <MenuItem Name ="LoadDataMenuItem" Header="Завантажити" Click="LoadDataMenuItem_Click"></MenuItem>
-                <MenuItem Name ="SaveDataMenuItem" Header="Зберегти" />
+                <MenuItem Name ="SaveDataMenuItem" Header="Зберегти" Click="SaveDataMenuItem_Click" />
             </MenuItem>
             <MenuItem Header="Рейси">
                 <MenuItem Name ="EditDataMenuItem" Header="Редагувати" Click="EditDataMenuItem_Click"/>

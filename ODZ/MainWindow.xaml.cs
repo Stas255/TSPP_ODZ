@@ -109,6 +109,11 @@ namespace ODZ
         private void inforBookForm_Loaded(object sender, RoutedEventArgs e)
         {
             OpenDbFile();
+            if (BooksClass.logUser == 1)
+            {
+                Menu.Items.Remove(Menu.Items[1]);
+                Menu.Width = 95;
+            }
             GroupBoxEdit.Visibility = Visibility.Hidden;
             GroupBoxNameAndAuthor.Visibility = Visibility.Hidden;
             GroupBoxYear.Visibility = Visibility.Hidden;
@@ -382,42 +387,48 @@ namespace ODZ
         }
         private void WriteData(List<BooksClass> selXYList)
         {
-            filePath = Environment.CurrentDirectory.ToString();
             try
             {
-                wordApp = new Microsoft.Office.Interop.Word.Application();
-                wordDoc = wordApp.Documents.Add(filePath + "\\Шаблон_Пошуку_Книг.dotx");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + char.ConvertFromUtf32(13) +
-                                "Недостатньо даних!" + char.ConvertFromUtf32(13) +
-                                "Помістіть файл Шаблон_Пошуку_книгів.dot" + char.ConvertFromUtf32(13) +
-                                "у каталог із exe-файлом програми і повторіть збереження", "Помилка",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+                filePath = Environment.CurrentDirectory.ToString();
+                try
+                {
+                    wordApp = new Microsoft.Office.Interop.Word.Application();
+                    wordDoc = wordApp.Documents.Add(filePath + "\\Шаблон_Пошуку_Книг.dotx");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + char.ConvertFromUtf32(13) +
+                                    "Недостатньо даних!" + char.ConvertFromUtf32(13) +
+                                    "Помістіть файл Шаблон_Пошуку_книгів.dot" + char.ConvertFromUtf32(13) +
+                                    "у каталог із exe-файлом програми і повторіть збереження", "Помилка",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
 
-            if (ComboBoxAutor == null)
-            {
-                string selectedAutor = ComboBoxAutor.SelectedItem.ToString();
-                string selectedTitle = ComboBoxTitle.SelectedItem.ToString();
-                ReplaceText(selectedAutor, "[X]");
-                ReplaceText(selectedTitle, "[Y]");
+                if (ComboBoxAutor == null)
+                {
+                    string selectedAutor = ComboBoxAutor.SelectedItem.ToString();
+                    string selectedTitle = ComboBoxTitle.SelectedItem.ToString();
+                    ReplaceText(selectedAutor, "[X]");
+                    ReplaceText(selectedTitle, "[Y]");
+                }
+
+                string selectedYear = TextBoxYear.Text;
+                string selectedQuantity = NumberBook.ToString();
+                ReplaceText(selXYList, 1);
+                ReplaceText(selectedYear, "[Z]");
+                ReplaceText(selectedQuantity, "[W]");
+                wordDoc.Save();
+                if (wordDoc != null)
+                {
+                    wordDoc.Close();
+                }
+
+                if (wordApp != null)
+                {
+                    wordApp.Quit();
+                }
             }
-            string selectedYear = TextBoxYear.Text;
-            string selectedQuantity = NumberBook.ToString();
-            ReplaceText(selXYList, 1);
-            ReplaceText(selectedYear, "[Z]");
-            ReplaceText(selectedQuantity, "[W]");
-            wordDoc.Save();
-            if (wordDoc != null)
-            {
-                wordDoc.Close();
-            }
-            if (wordApp != null)
-            {
-                wordApp.Quit();
-            }
+            catch (Exception e) { }
         }
         private void ReplaceText(List<BooksClass> selectedLixt, int numTable)
         {
@@ -491,6 +502,11 @@ namespace ODZ
         private void ComboBoxAutor_DropDownOpened(object sender, EventArgs e)
         {
             FillAutorList();
+        }
+
+        private void SaveDataMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonSave_Click(sender, e);
         }
     }
 }
