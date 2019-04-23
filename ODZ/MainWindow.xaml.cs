@@ -331,7 +331,6 @@ namespace ODZ
                 GroupBoxYear.Visibility = Visibility.Visible;
                 AddMargin(GroupBoxYear);
                 this.Width += GroupBoxYear.Width + 20;
-                ComboBoxAutor.Items.Clear();
             }
         }
         private void SelectXYMenuItem_Click(object sender, RoutedEventArgs e)
