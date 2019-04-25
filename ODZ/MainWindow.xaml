@@ -82,7 +82,7 @@
                 <Button Content="Пошук" HorizontalAlignment="Left" Margin="60,82,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
             </Grid>
         </GroupBox>
-        <Button Name="ButtonSave" Content="Зберегти у файлі" HorizontalAlignment="Left" Margin="384,276,0,0" VerticalAlignment="Top" Width="102" Click="ButtonSave_Click"/>
+        <Button Name="ButtonSave" Content="Зберегти у файлі" HorizontalAlignment="Left" Margin="410,276,0,0" VerticalAlignment="Top" Width="102" Click="ButtonSave_Click"/>
 
     </Grid>
 </Window>

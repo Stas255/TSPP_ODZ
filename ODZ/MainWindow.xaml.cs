@@ -117,7 +117,7 @@ namespace ODZ
             GroupBoxEdit.Visibility = Visibility.Hidden;
             GroupBoxNameAndAuthor.Visibility = Visibility.Hidden;
             GroupBoxYear.Visibility = Visibility.Hidden;
-            this.Width = BooksListDG.Margin.Left + BooksListDG.RenderSize.Width + 60;
+            this.Width = BooksListDG.Margin.Left + BooksListDG.RenderSize.Width + 85;
             this.Height = BooksListDG.Margin.Top + BooksListDG.RenderSize.Height + 60;
         }
 
@@ -489,12 +489,12 @@ namespace ODZ
         {
             if (!isCreate)
             {
-                groupBox.Margin = new Thickness(385, 10, 0, 0);
+                groupBox.Margin = new Thickness(410, 10, 0, 0);
                 isCreate = true;
             }
             else
             {
-                groupBox.Margin = new Thickness(600, 10, 0, 0);
+                groupBox.Margin = new Thickness(625, 10, 0, 0);
             }
         }
 
