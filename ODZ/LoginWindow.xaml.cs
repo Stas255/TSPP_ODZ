@@ -53,7 +53,9 @@ namespace Aviadispetcher
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
             }
-            this.Close();
+
+            logTextBox.Text = String.Empty;
+            passwordTextBox.Text = String.Empty;
         }
 
 

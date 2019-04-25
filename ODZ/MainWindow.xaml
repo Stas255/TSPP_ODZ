@@ -18,12 +18,12 @@
                 <MenuItem Name ="LoadDataMenuItem" Header="Завантажити" Click="LoadDataMenuItem_Click"></MenuItem>
                 <MenuItem Name ="SaveDataMenuItem" Header="Зберегти" Click="SaveDataMenuItem_Click" />
             </MenuItem>
-            <MenuItem Header="Рейси">
+            <MenuItem Header="Книги">
                 <MenuItem Name ="EditDataMenuItem" Header="Редагувати" Click="EditDataMenuItem_Click"/>
                 <MenuItem Name ="AddDataMenuItem" Header="Додати" Click="AddDataMenuItem_Click" />
             </MenuItem>
             <MenuItem Header="Пошук">
-                <MenuItem Name ="SelectXYMenuItem" Header="За автором и назвою" Click="SelectXYMenuItem_Click" />
+                <MenuItem Name ="SelectXYMenuItem" Header="За назвою та автором" Click="SelectXYMenuItem_Click" />
                 <MenuItem Name ="SelectXXMenuItem" Header="За роком" Click="SelectXXMenuItem_Click" />
             </MenuItem>
         </Menu>

@@ -284,7 +284,7 @@ namespace ODZ
             bool nameExist = false;
             ComboBoxAutor.Items.Add(fList[0].NameAuthor);
 
-            for (int i = 1; i < fList.Count; i++) //ошибка
+            for (int i = 1; i < fList.Count; i++)
             {
                 for (int j = 0; j < ComboBoxAutor.Items.Count; j++)
                 {
@@ -306,7 +306,7 @@ namespace ODZ
         {
             bool nameExist = false;
             ComboBoxTitle.Items.Clear();
-            for (int i = 0; i < fList.Count; i++) //ошибка
+            for (int i = 0; i < fList.Count; i++)
             {
                 for (int j = 0; j < ComboBoxTitle.Items.Count; j++)
                 {
