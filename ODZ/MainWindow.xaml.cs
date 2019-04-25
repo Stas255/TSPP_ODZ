@@ -403,7 +403,7 @@ namespace ODZ
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
-                if (ComboBoxAutor != null)
+                if (ComboBoxAutor != null && GroupBoxNameAndAuthor.Visibility == Visibility.Visible)
                 {
                     string selectedAutor = ComboBoxAutor.SelectedItem.ToString();
                     string selectedTitle = ComboBoxTitle.SelectedItem.ToString();
