@@ -33,7 +33,7 @@ namespace ODZ
         {
             try
             {
-                connStr = "Server = 127.0.0.1; Database = liberybooks; Uid = root; Pwd = ;";
+                connStr = "Server = 127.0.0.1; Database = collection; Uid = root; Pwd = ;";
                 MySqlConnection conn = new MySqlConnection(connStr);
                 MySqlCommand command = new MySqlCommand();
                 string commandString = "SELECT * FROM books;";
