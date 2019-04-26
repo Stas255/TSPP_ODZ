@@ -131,7 +131,7 @@ namespace ODZ
             bookNum = fList.Count;
         }
 
-        private void ChangeFlightListData(int num)
+        private void ChangeBookListData(int num)
         {
             TimeSpan depTime;
             if (bookAdd)
@@ -235,13 +235,13 @@ namespace ODZ
             if (Button1.Content == "Додати")
             {
                 bookAdd = true;
-                ChangeFlightListData(bookNum);
+                ChangeBookListData(bookNum);
                 LoadDataMenuItem_Click(sender, e);
             }
             else
             {
                 bookAdd = false;
-                ChangeFlightListData(bookNum);
+                ChangeBookListData(bookNum);
             }
         }
 
