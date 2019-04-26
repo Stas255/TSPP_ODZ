@@ -51,6 +51,7 @@ namespace Aviadispetcher
                 (BooksClass.logUser == 2))
             {
                 MainWindow mainWindow = new MainWindow();
+                this.Close();
                 mainWindow.Show();
             }
 
