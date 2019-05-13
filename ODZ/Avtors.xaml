@@ -8,8 +8,8 @@
         Title="Автори" Height="161.122" Width="259.429">
     <Grid>
         <Label Content="Толстоноженко Станіслав Олегович" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Анус" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <Label Content="Чичикало Евгений Андрійович" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top"/>
+        <Label Content="Проценко Максим Олегович" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label Content="Чичикало Євгеній Андрійович" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top"/>
         <Button Content="Продовжити" HorizontalAlignment="Left" Margin="158,100,0,0" VerticalAlignment="Top" Width="83" Click="Button_Click"/>
     </Grid>
 </Window>
