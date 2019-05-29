@@ -42,6 +42,8 @@ namespace Aviadispetcher
             {
                 MainWindow mainWindow = new MainWindow();
                 this.Close();
+                MessageBox.Show("Група ІТ-71\nТолстоноженко Станіслав Олегович\nЧичикало Євгений Андрійович\nПроценко Максим Олегович", "Автори",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
                 mainWindow.Show();
             }
 
